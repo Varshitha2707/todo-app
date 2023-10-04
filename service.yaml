@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todolistapp 
+spec:
+  selector:
+    app: todolistapp
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 4200
+  type: LoadBalancer
