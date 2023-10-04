@@ -1,14 +1,86 @@
-<div class="todo-container">
-  <h2>Todo List</h2>
-  <input [(ngModel)]="newTodoText" placeholder="Enter a new todo" />
-  <button (click)="addTodo()">Add</button>
+<section>
+  <div class="container py-5">
+    <div class="row">
+      <div class="col ml-auto text-right">
+        <h1 class="text-center" style="font-family: cursive; color: rgb(240, 100, 50);">Todo List</h1>
+          <button
+            type="button"
+            class="btn btn-outline-success"
+            style="border-color: red; color: red;"
+            (click)="onAddTodo()">
+            Add To-do Item
+          </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- TODO LIST DISPLAY -->
+  <div class="row">
+    <div style="margin-bottom: 2rem" class="col-lg-4" *ngFor = "let item of todoList">
+      <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="name-cost">
+                    <h1 class="badge" style="color: black;font-size: larger;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;padding-left: 0px;">
+                        <b>{{item.todoName.toString() | uppercase}}</b>
+                    </h1>
+                </div>
+            </div>
+            <p class="fw-semibold">({{ item.todoDescription }})</p>
+            <a class="btn btn-primary" style="color: white; background-color: red;" (click)="onEditTodo(item)">Edit</a>
+            <a class="btn btn-primary" style="color: white; background-color: red;" (click)="onDeleteTodo(item._id)">Delete</a> 
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <ul class="todo-list">
-    <li *ngFor="let todo of todos">
-      <app-todo-item [todo]="todo"
-                     (toggleCompleted)="toggleCompleted(todo)"
-                     (deleteTodo)="deleteTodo(todo)">
-      </app-todo-item>
-    </li>
-  </ul>
-</div>
+  <!-- FORM TO ADD OR EDIT TODO -->
+  <div class="modal fade show" [class.show]="showModal">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" style="color: red;">{{ editMode ? "Update Todo" : "Add Todo" }}</h5>
+            <button
+              (click)="onCloseModal()"
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form [formGroup]="todoForm" (ngSubmit)="onTodoSubmit()">
+            <div class="modal-body">
+              <div class="form-group">
+                <label style="color: red;"><b>Todo Name</b></label>
+                <input type="text" class="form-control" formControlName="todoName" />  
+              </div>
+              <br>
+
+              <div class="form-group">
+                <label style="color: red;"><b>Todo Description</b></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="todoDescription"/>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                (click)="onCloseModal()"
+                class="closeBtn btn-secondary"
+                style="color: white;"
+                data-dismiss="modal">
+                Close
+              </button>
+              <button type="submit" class="addTodo btn-primary" style="color: white;">
+                {{ editMode ? "Update Todo" : "Add Todo" }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</section>

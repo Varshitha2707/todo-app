@@ -1,28 +1,59 @@
-.todo-container {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .todo-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .todo-list li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px 0;
-  }
-  
-  .todo-item-text {
-    flex-grow: 1;
-    margin-left: 10px;
-    text-decoration: none;
-  }
-  
-  .completed {
-    text-decoration: line-through;
-    color: #aaa;
-  }
-  
+section{
+  margin: 2rem;
+}
+.flexbox{
+  display: flex;
+  justify-content: space-evenly;
+}
+.flexname{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn{
+  margin-right: 1rem;
+}
+.container{
+  margin: 0;
+}
+.modal.fade.show{
+  display: block;
+  background: rgba(0,0,0,0.4);
+}
+
+.btn:hover{
+  background-color: rgb(209, 209, 188);
+}
+
+.addTodo{
+  padding: 5px;
+  border-color: white;
+  border-radius: 8px;
+  background-color: red;
+}
+.addTodo:hover{
+  background-color: orangered;
+}
+
+.closeBtn{
+  background-color: red;
+  padding: 5px;
+  border-radius: 8px;
+  border-color: white;
+}
+.closeBtn:hover{
+  background-color: orangered;
+}
+
+
+.close{
+  color: black;
+  border-radius: 3px;
+}
+.close:hover{
+  background-color: white;
+}
+
+.btn:hover{
+  background-color: rgb(209, 209, 188);
+}
